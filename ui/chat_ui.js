@@ -73,11 +73,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 			}
 
 			let problemName = id.replace(/_/g, ' ')
-			let img_src = `https://cdn.jsdelivr.net/gh/nazarMykhailenko/quanta_project/assets/icon_upd.svg`
+			let img_src = `https://cdn.prod.website-files.com/6568bfe66e016172daa08150/66ede06843f101bc518e0798_submit_icon.svg`
 			el.innerHTML = `
 							<p class="edu-problem-name-and-num">${problemName}</p>
 							<p class="edu-p">${data[id]}</p>
-							<img src="${img_src}" class="sbmt-button" data-id="${id}" onclick="openChat(event)">
+							<div class="sbmt-button-container"><img src="${img_src}" class="sbmt-button" data-id="${id}" onclick="openChat(event)"></div>
 					`
 
 			try {
