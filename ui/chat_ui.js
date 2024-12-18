@@ -262,7 +262,7 @@ function sendSolution(ev) {
 				html += `
 							<div class="response-block overall-grade">
 									<h3 class="response-title">${formattedKey}:</h3>
-									<p class="response-field">${overallGradeValue}</p>
+									<p class="response-value">${overallGradeValue}</p>
 							</div>
 					`
 				delete data.response[overallGradeKey] // Remove it to avoid duplication

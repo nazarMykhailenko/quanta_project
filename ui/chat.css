@@ -154,8 +154,19 @@
 	flex-direction: column;
 	align-items: start !important;
 }
+.response-block.overall-grade {
+	width: 100%;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 15px 5px;
+}
 .response-title {
 	font-size: 20px;
+	line-height: 100%;
+}
+.response-value {
+	line-height: 100%;
 }
 
 #submit-btn {
