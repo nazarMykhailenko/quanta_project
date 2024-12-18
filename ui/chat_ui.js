@@ -1,4 +1,4 @@
-const serverLink = 'http://localhost:3000/'
+const serverLink = 'https://quanta-project.vercel.app/'
 let chat = null
 let user_id = null
 let is_user_verified = null
