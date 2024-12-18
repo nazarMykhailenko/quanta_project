@@ -138,10 +138,11 @@
 	border: 1px solid #374b6a;
 	border-radius: 3px;
 	padding: 2px 8px;
+	display: inline-flex;
 }
 .sbmt-button-container:hover {
 	cursor: pointer;
-	transform: scale(1.3);
+	transform: scale(1.1);
 	filter: brightness(1.2); /* Enhance hover effect */
 }
 .sbmt-button {
