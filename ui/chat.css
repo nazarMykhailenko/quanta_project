@@ -136,7 +136,6 @@
 
 .sbmt-button {
 	width: 20px; /* Slightly larger for better clickability */
-	height: 20px;
 	transition: transform 0.3s ease, filter 0.3s ease;
 }
 

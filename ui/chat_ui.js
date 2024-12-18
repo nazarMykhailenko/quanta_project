@@ -249,28 +249,50 @@ function sendSolution(ev) {
 		.then((data) => {
 			if (!data.response) return
 			let html = ``
+
+			// Extract Overall_Grade first
+			const overallGradeKey = 'Overall_Grade'
+			const overallGradeValue = data.response[overallGradeKey]
+
+			if (overallGradeValue !== undefined) {
+				const formattedKey = overallGradeKey
+					.replace(/_/g, ' ') // Replace underscores with spaces
+					.replace(/\b\w/g, (char) => char.toUpperCase()) // Capitalize each word
+
+				html += `
+							<div class="response-block overall-grade">
+									<h3 class="response-title">${formattedKey}:</h3>
+									<p class="response-field">${overallGradeValue}</p>
+							</div>
+					`
+				delete data.response[overallGradeKey] // Remove it to avoid duplication
+			}
+
+			// Process remaining keys
 			for (let [key, value] of Object.entries(data.response)) {
 				console.log(key, value)
 
 				// Format key: replace underscores with spaces and capitalize each word
 				const formattedKey = key
-					.replace(/_/g, ' ') // Replace underscores with spaces
-					.replace(/\b\w/g, (char) => char.toUpperCase()) // Capitalize each word
+					.replace(/_/g, ' ')
+					.replace(/\b\w/g, (char) => char.toUpperCase())
 
 				// Check if value length exceeds 30 characters
 				const blockClass =
 					value.length > 30 ? 'response-block long' : 'response-block'
 
 				html += `
-						<div class="${blockClass}">
-								<h3 class="response-title">${formattedKey}:</h3>
-								<p class="response-field">${value}</p>
-						</div>
-				`
+							<div class="${blockClass}">
+									<h3 class="response-title">${formattedKey}:</h3>
+									<p class="response-field">${value}</p>
+							</div>
+					`
 			}
+
 			chat.responseBody.innerHTML = html
 			showChatPage('responseDIV')
 			chat.responseID = data.submission_id
+
 			try {
 				MathJax.typeset([chat.responseDIV])
 			} catch (e) {
