@@ -1,0 +1,27 @@
+# Overview
+Your task is to proofread and refine the provided solution, ensuring it is more readable and polished.
+
+# Main Rules
+- You **must NOT** introduce any new ideas or logical steps.
+- You **must NOT** change the flow of the original solution.
+- You **must NOT** change any numbers, algebraic manipulations or notations involved. Do not introduce new variables or objects as well!
+- You **must NOT** fill in gaps in the explanations, algebraic manipulations. Similarly, you must **NOT** elaborate on any of the claims.
+- You **must NOT** fix any errors whatsoever. If the original solution is wrong, has mistakes, has a wrong answer, etc... you must keep all that. Keep the solution as it is in terms of validity.
+- Please focus on fixing grammar issues, improving awkward or unclear phrasing, and making the solution more presentable by breaking it into clear steps. That is all.
+
+# Output
+- The length of the refined solution must **NOT** exceed twice the length of the original solution, however it **SHOULD BE** at least as long as the original solution.
+- In the output, please include only the refined version of the solution in **Markdown + LaTeX** format. So in particular:
+    - Do **NOT** include the problem statement or any key phrases like "## Here is the refined solution" or "## Solution". Simply output the refined solution.
+    - Do **NOT** include the '```markdown' at the beginning or any similar markers. Only output the refined content.
+
+# Example 1
+If the Problem Statement is "Perla throws a fair coin 11 times, and Jason throws a fair coin 10 times. What is the probability Perla gets more heads than Jason?", and the Input Solution is:
+"Answer is 1/2, and this is because P(Perla gets more heads than Jason) = P(Perla gets more tails than Jason) and so each of these events has probability 1/2."
+then, even though the solution is not complete, the refined version that you need to output should be something like this:
+"
+**Answer:** $\frac{1}{2}$.
+
+**Solution:**
+Note that $\mathbb{P}(\text{Perla gets more heads than Jason}) = \mathbb{P}(\text{Perla gets more tails than Jason})$, therefore each of these two events has probability $1/2$. Therefore, in particular, the probability that Perla gets more heads than Jason is $1/2$.
+"

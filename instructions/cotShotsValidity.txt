@@ -1,0 +1,131 @@
+# Example 1
+
+If the input is this:
+"# Here is the problem statement: 
+Let $(\Omega, \mathbb{P})$ be a finite probability space and assume there are two random variables defined on this probability space, say $X$ and $Y$. Is it necessarily true that $\mathbb{E}[X \cdot Y] = \mathbb{E} [X] \cdot \mathbb{E}[Y]$?
+
+# For which the correct solution(s) are: 
+**Answer: ** No, it is not true.
+
+**Solution: ** 
+1. As a counterexample to the equality, consider a probability model where
+- $\Omega = \{ H, T \} $ (corresponding to the coin flips for example), and 
+- $\mathbb{P}(H) = \mathbb{P}(T) = 1/2$. 
+- Random Variables $X$ and $Y$ are equal, such that $X(H) = 1, X(T) = -1$ and $Y(H) = 1, Y(T) = -1$.
+- Then random variables $XY$ is such that it always takes value $1$ (cause for both of the two simple events, $H$ and $T$ it is equal to 1).
+
+2. Then we have:
+- $\mathbb{E}[X] = \mathbb{E}[Y] = 1/2  \cdot 1 + 1/2 \cdot (-1) = 0$ from the definition of the maths expectation.
+- $\mathbb{E}[XY] = 1$ because with $100\%$ probability the $XY$ is equal to 1.
+
+3. And so $\mathbb{E}[X] \cdot \mathbb{E}[Y] \not= \mathbb{E}[XY] $ in this particular case. Thus, that equality is not always true.
+
+# Optional specific requirements for validation process are: 
+-
+
+# The Input Solution that I want you to give me feedback for is: 
+1. If we find some particular random variables that our formula isn't true for them, we can actually say that the answer is ""No"", as this would prove that our formula is not necessarily true. Here's an example of such variables: let's suppose that we flip a fair coin twice, and X is a random variable representing the number of tails we get in the first flip(which means X=1 if we get tails in the first coin flip and X=0 otherwise), and Y is a random variable representing the number of tails we get in the both flips in total. Let's find the expectation of X,Y and X*Y.                                                                                                                 2. In this model, we have 4 simple events with the probabilities of 1/4, which represent all possible combinations of two coin flips. Let's find the value of X, Y and X*Y for each of them. (HH): X=0, Y=0, X*Y=0. (HT): X=0, Y=1, X*Y=0.  (TH): X=1, Y=1, X*Y=1. (TT): X=1, Y=2, X*Y=2. Now we cain find the mathematical expectation for X, Y and X*Y.  E|X|=0*1/4 + 0*1/4 + 1*1/4 + 1*1/4 = 1/2. E|Y|=0*1/4 + 1*1/4 + 1*1/4 + 2*1/4 = 1. E|X*Y|=0*1/4 + 0*1/4 + 1*1/4 + 2*1/4 = 3/4.                                                                                                                                                                                                                                                                             3. As wee see, E|X*Y|=3/4 and E|X|*E|Y|=1/2, so E|X*Y| is not equal to E|X|*E|Y| for this example, which proves that our formula is not necessarily true.
+
+# Finally, here is a proofread and more potentially clearer version of the Input Solution. Please take it into account when producing feedback as well:
+1. To demonstrate whether the formula $\mathbb{E}[X \cdot Y] = \mathbb{E}[X] \cdot \mathbb{E}[Y]$ holds in general, we can provide a counterexample. If we find specific random variables for which this formula does not hold, we can conclusively say that the formula is not necessarily true. Consider the following example:
+
+    Suppose we flip a fair coin twice. Let $X$ be a random variable representing the number of tails we get in the first flip (thus, $X = 1$ if we get tails in the first coin flip and $X = 0$ otherwise). Let $Y$ be a random variable representing the total number of tails we get in both flips.
+
+2. In this setup, we have 4 simple events with equal probabilities of $\frac{1}{4}$, corresponding to all possible outcomes of two coin flips. Let's determine the values of $X$, $Y$, and $X \cdot Y$ for each outcome:
+
+    - (HH): $X = 0$, $Y = 0$, $X \cdot Y = 0$
+    - (HT): $X = 0$, $Y = 1$, $X \cdot Y = 0$
+    - (TH): $X = 1$, $Y = 1$, $X \cdot Y = 1$
+    - (TT): $X = 1$, $Y = 2$, $X \cdot Y = 2$
+
+    Now, we calculate the expectations $\mathbb{E}[X]$, $\mathbb{E}[Y]$, and $\mathbb{E}[X \cdot Y]$:
+
+    \[
+    \mathbb{E}[X] = 0 \cdot \frac{1}{4} + 0 \cdot \frac{1}{4} + 1 \cdot \frac{1}{4} + 1 \cdot \frac{1}{4} = \frac{1}{2}
+    \]
+
+    \[
+    \mathbb{E}[Y] = 0 \cdot \frac{1}{4} + 1 \cdot \frac{1}{4} + 1 \cdot \frac{1}{4} + 2 \cdot \frac{1}{4} = 1
+    \]
+
+    \[
+    \mathbb{E}[X \cdot Y] = 0 \cdot \frac{1}{4} + 0 \cdot \frac{1}{4} + 1 \cdot \frac{1}{4} + 2 \cdot \frac{1}{4} = \frac{3}{4}
+    \]
+
+3. As we see, $\mathbb{E}[X \cdot Y] = \frac{3}{4}$ and $\mathbb{E}[X] \cdot \mathbb{E}[Y] = \frac{1}{2}$. Therefore, $\mathbb{E}[X \cdot Y] \neq \mathbb{E}[X] \cdot \mathbb{E}[Y]$ in this example, proving that the formula is not necessarily true."
+
+Then the expected output should be something like this:
+
+{
+    "Answer_Status": "Correct",
+    "Major_Conceptual_Errors": "None",
+    "Nontrivial_Mistakes_or_Unjustified_Claims": "None",
+    "Explanation_Good_Aspects_Summary": "All the steps in your solution are correct and provide a valid explanation.",
+    "Validity_Grade": "A"
+}
+
+# Example 2
+If the input is this
+"# Here is the problem statement: 
+a)Suppose we toss a fair coin $2n$ times. Prove that the probability of equal number of heads and tails is approximately $\frac{1}{\sqrt{\pi n}}$. For $n = 13$ this is around 0.156 (while the exact answer is around 0.155);b) Find the probability of extracting 26 cards from a shuffled deck and obtaining 13 red and 13 black (once again, you can obtain a very decent approximation for it). You should get an answer larger than the answer from the previous part. Could you explain why it happens?
+
+# For which the correct solution(s) are: 
+**Part a: **
+1. Since we toss a fair coin \(2n\) times, we will consider the model with $2^{2n}$ simple equally likely events corresponding to all of the possible ways to toss a coin.
+2. There are $\binom{2n}{n}$ different ways to tossing $2n$ coins where there are $n$ heads and $n$ tails. Therefore, the probability of equal number of heads and tails is
+$$
+\frac{\binom{2n}{n}}{2^{2n}} = \frac{(2n)!}{[2^n (n!)]^2} \approx \frac{\sqrt{2\pi (2n)}(2n)^{2n + \frac{1}{2}} e^{-2n}}{[2^n \sqrt{2\pi n} n^{n + \frac{1}{2}} e^{-n}]^2} = \frac{1}{\sqrt{\pi n}}.
+$$
+where we used the Stirling's formula. For \(n = 13\) this is indeed around $0.156$.
+
+**Part b: **
+1. From the previous part it follows that 
+$$ \binom{2n}{n} \approx \frac{2^{2n}}{\sqrt{\pi n}}$$
+2. For this problem, the probability model is the one with $\binom{52}{26}$ simple events corresponding to all of the possible ways of selecting 26 cards from the 52 that we have. 
+3. There are $\binom{26}{13} \binom{26}{13}$ favourable events, since there are $\binom{26}{13}$ ways of selecting 13 black cards, and there are $\binom{26}{13}$ ways of selecting 13 red cards. Thus, the probability of extracting 26 cards from a shuffled deck and obtaining 13 red and 13 black
+$$
+\frac{\binom{26}{13} \binom{26}{13}}{\binom{52}{26}} \approx \frac{2^{26} \cdot 2^{26}}{2^{52}} \cdot \frac{\sqrt{\pi \cdot 26}}{\sqrt{\pi \cdot 13} \cdot \sqrt{\pi \cdot 13}} \approx 0.218
+$$
+4. As for the last question, i.e the ""You should get an answer larger than the answer from the previous part. Could you explain why it happens?"": the explanation is that every combination of 13 heads and 13 tails corresponds to a combination of 13 letters ""R"" and 13 letters ""B"" (in an obvious way), but then each of the ""R""s and each of the ""B""s could be one of many black cards.
+
+# Optional specific requirements for validation process are: 
+Input Solution must clearly define the probability model at the beginning.
+
+# The Input Solution that I want you to give me feedback for is: 
+By stirling's approximation, \(\binom{2n}{n} \sim \frac{2^{2n}}{\sqrt{\pi n}}\)
+Using this, part (a) is obvious. 
+
+For part (b), the answer is, \(\frac{\binom{26}{13}^2}{\binom{52}{26}}\). Which, from stirling's approximation will be \(\frac{\left(\dfrac{2^{26}}{\sqrt{13\pi}}\right)^2}{\dfrac{2^{52}}{\sqrt{26\pi}}} = \frac{\sqrt{26\pi}}{13\pi}\).
+
+# Finally, here is a proofread and more potentially clearer version of the Input Solution. Please take it into account when producing feedback as well:
+By Stirling's approximation, 
+
+\[
+\binom{2n}{n} \sim \frac{2^{2n}}{\sqrt{\pi n}}
+\]
+
+Using this, part (a) is straightforward.
+
+For part (b), the answer is 
+
+\[
+\frac{\binom{26}{13}^2}{\binom{52}{26}}
+\]
+
+Using Stirling's approximation, this becomes 
+
+\[
+\frac{\left(\dfrac{2^{26}}{\sqrt{13\pi}}\right)^2}{\dfrac{2^{52}}{\sqrt{26\pi}}} = \frac{\sqrt{26\pi}}{13\pi}
+\]"
+
+then the output should be something like this:
+
+{
+    "Answer_Status": "Wrong or Unclear",
+    "Major_Conceptual_Errors": "1. 'Using this, part (a) is obvious.' is not a valid explanation. Thus, you still have part (a) of the problem to explicitly solve.
+2. You haven't addressed the last part of the problem, which asks for an explanation of why the probability in part (b) is higher than in part (a). Without this explanation, your solution will not be considered complete.",
+    "Nontrivial_Mistakes_or_Unjustified_Claims": "In the 'By stirling's approximation, \(\binom{2n}{n} \sim \frac{2^{2n}}{\sqrt{\pi n}}\)' claim you need to provide more details, particularly the algebraic manipulations, on how you used Stirling's Approximation to arrive at this expression. Note that Stirling's Approximation applies to $n!$, not directly to $\binom{2n}{n}$.",
+    "Explanation_Good_Aspects_Summary": "1. You correctly identified the fact that you need to use Stirling's Approximation to approximate the $\binom{2n}{n}$.
+2. The algebraic manipulations for answering the first question from the part (b) are essentially there.",
+    "Validity_Grade": "E"
+}

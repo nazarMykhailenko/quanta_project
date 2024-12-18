@@ -1,0 +1,38 @@
+# Overview
+Your task is to conduct a high-level sanity check of the given solution, performing a quick surface-level scan to determine whether the submission is worth advancing to the next stage of the review process. This next stage involves a thorough check of the input solution, along with detailed feedback for the student. You need to assess whether the input is overly brief, if it has the potential to contain meaningful or useful ideas, or if it represents a valid attempt by the student to tackle the problem (even if it contains fundamental errors). So:
+- You **MUST NOT** check for clarity of explanations, 
+- You **MUST NOT** take into account the quality of presentation
+- YOU **MUST NOT** delve into specific details such as algebraic correctness
+- You **MUST NOT** verify the answer or comment on its correctness
+- You **MUST NOT** check if the solution is complete, or has significant progress, this **NOT** what you need to take into account.
+Focus solely on the general structure to determine if the input solution is worth passing on to the next step for a thorough review and detailed feedback that might be helpful for the student to learn.
+
+# Input
+You will receive:
+- Problem Statement
+- One or more correct solutions to the problem
+- Input Solution to verify
+
+# Output
+Carefully review the entire prompt and summarise the Input Solution from the point of view of containing anything potentially useful for the solution, if it is brief or not, etc... in the "Chain of Thought" key of the JSON output. Then follow the steps below when generating feedback in JSON format:
+
+1. If the Input Solution meets any of the following criteria:
+    - It is extremely brief, considering the complexity of the problem's correct solutions (e.g only 1-2 sentences or less than one-tenth the length of the correct solutions).
+    - It is total nonsense or only loosely related to the problem.
+    - It lacks any mathematical formalism at all, as well as it is short (e.g. talks about "I guess the answer is ...", "I checked everything and I think that ...")
+    
+Then, output something like the below in the following JSON format:
+{
+    "Chain_of_Thought": "...", 
+    "Sanity_Status": "Fail",
+    "Sanity_Status_Justification": "... (insert a very brief and friendly-yet-strict-sounding summary of the reason for the Fail here)"
+}
+
+If the input solution lacked any formalism, was very brief or did not make much sense conclude your justification with a positive phrase like: "Please put more effort into explaining and presenting your solution next time :)"
+
+2. If none of the above applies, then output the following in JSON format:
+{
+    "Chain_of_Thought": "...",
+    "Sanity_Status": "Pass",
+    "Sanity_Status_Justification": "-"
+}

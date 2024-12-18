@@ -1,0 +1,187 @@
+#chatWindow {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	width: auto; /* Default width */
+	max-width: 1440px; /* Max-width for normal screens */
+	background-color: #f9f9f9;
+	border: 1px solid #ccc;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	border-radius: 16px;
+	max-height: 75%;
+	overflow-y: auto;
+	z-index: 1000;
+	transition: width 0.3s ease, max-width 0.3s ease; /* Smooth transition */
+}
+
+#responseBody {
+	max-width: 600px; /* Set a maximum width for the response content */
+	margin: 0 auto; /* Center align the response body */
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+/* For inputDiv screen */
+#chatWindow.inputDiv-active {
+	width: 95%; /* Expand width for inputDiv */
+	max-width: 1440px; /* Disable max-width for full responsiveness */
+}
+
+#submitHeader {
+	font-size: 18px;
+	margin-bottom: 8px;
+}
+
+.close-chat-btn {
+	position: absolute;
+	top: 6px;
+	right: 6px;
+	background-color: transparent;
+	border: none;
+	font-size: 18px; /* Slightly larger for better clickability */
+	color: #666; /* Darker grey for better contrast */
+	cursor: pointer;
+	padding: 5px;
+	line-height: 1;
+	z-index: 10;
+	transition: color 0.2s ease;
+}
+
+.close-chat-btn:hover {
+	color: #333; /* Darker hover effect */
+}
+
+/* Hide other screens by default */
+.chat-screen {
+	display: none;
+}
+
+#solution-input {
+	width: 100%;
+	min-height: 200px; /* Slightly larger height for better usability */
+	margin-bottom: 15px; /* Add space between input and buttons */
+	flex: 1 1 auto;
+	padding: 10px; /* Add padding for better text input experience */
+	border: 1px solid #ddd; /* Border for better visual clarity */
+	border-radius: 6px;
+	resize: vertical; /* Allow vertical resizing for flexibility */
+}
+
+.btn {
+	width: 100%;
+	padding: 12px; /* Slightly larger padding for better click area */
+	background-color: #374b68; /* Keep button background color */
+	color: #fff;
+	border: none;
+	border-radius: 6px; /* Consistent border radius */
+	font-size: 16px; /* Improved readability */
+	font-weight: 500; /* Slightly bolder text */
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+	background-color: #4f688e;
+	transform: scale(1.02); /* Subtle hover effect */
+}
+
+#feedback-buttons {
+	display: flex;
+	justify-content: flex-start;
+	gap: 15px; /* Increase gap for better spacing */
+	margin-top: 15px;
+}
+
+/* Style for the feedback buttons */
+#thumb-up-btn,
+#thumb-down-btn {
+	background-color: transparent;
+	color: #3898ec; /* Keep consistent icon color */
+	border: 2px solid #3898ec;
+	width: 45px; /* Slightly larger button */
+	height: 45px;
+	border-radius: 50%; /* Circular buttons for modern feel */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#thumb-up-btn:hover,
+#thumb-down-btn:hover {
+	background-color: #eaf6ff; /* Subtle hover background */
+	transform: scale(1.1); /* Slight zoom on hover */
+}
+
+#thumb-up-btn:disabled,
+#thumb-down-btn:disabled {
+	background-color: #f9f9f9;
+	border-color: #ddd;
+	color: #bbb;
+	cursor: not-allowed;
+}
+
+.pressed {
+	background-color: #e6f2ff !important; /* Keep consistent pressed effect */
+}
+
+::-webkit-resizer {
+	display: none;
+}
+
+.sbmt-button {
+	width: 20px; /* Slightly larger for better clickability */
+	height: 20px;
+	transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.sbmt-button:hover {
+	cursor: pointer;
+	transform: scale(1.3);
+	filter: brightness(1.2); /* Enhance hover effect */
+}
+
+.response-block {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.response-block.long {
+	flex-direction: column;
+	align-items: start !important;
+}
+.response-title {
+	font-size: 20px;
+}
+
+#submit-btn {
+	width: auto; /* Let the button size adjust to its content */
+	padding: 10px 64px; /* Smaller padding for compact size */
+	background-color: #374b68; /* Button background color */
+	color: #fff; /* Button text color */
+	border: none; /* Remove default borders */
+	border-radius: 6px; /* Slight rounding for modern look */
+	font-size: 16px; /* Slightly smaller font size */
+	font-weight: 500; /* Maintain bold text */
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	align-self: flex-start; /* Align the button to the left */
+}
+
+#submit-btn:hover {
+	background-color: #4f688e; /* Change color on hover */
+	transform: scale(1.05); /* Subtle zoom effect */
+}
+
+#errorDiv {
+	padding-top: 10px;
+}
+
+#error-message {
+	max-width: 500px;
+}

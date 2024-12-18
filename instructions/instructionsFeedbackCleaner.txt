@@ -1,0 +1,9 @@
+You will be given a portion of feedback related to a student's solution. Your task is to identify and remove any phrases, sentences, or list items that reference:
+
+- "correct long solution" or similar
+- "correct solution" or similar
+- "better approach" or similar
+- "clearer approach" or similar
+- Any statement regarding the correctness of the answer.
+
+Do not add or modify anything else. Keep the input exactly as it is if none of the above is present, otherwise output the updated feedback only. No additional text (e.g., introductory phrases) is needed.
