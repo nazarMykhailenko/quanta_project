@@ -152,12 +152,10 @@ function renderDetails(data) {
 	let overallGrade = '';
 	if (data.all_response && data.all_response.Overall_Grade) {
 		overallGrade = `
-		<div class="overall-grade-block">
-		<div class="response-block overall-grade">
-			<h3 class="response-title">Overall Grade:</h3>
-			<p class="response-value">${data.all_response.Overall_Grade}</p>
-		</div>
-		</div>
+			<div class="response-block overall-grade">
+				<h3 class="response-title">Overall Grade:</h3>
+				<p class="response-value">${data.all_response.Overall_Grade}</p>
+			</div>
 		`;
 		delete data.all_response.Overall_Grade; // Avoid duplication
 	}
