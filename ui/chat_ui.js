@@ -173,33 +173,107 @@ function closeWindow(ev) {
 	chat.status = 'closed'
 }
 
-function showChatPage(pageID) {
-	if (!chat) {
-		console.error('No chat found')
-		return
-	}
+function sendSolution(ev) {
+  const solution = chat.input.value.trim();
+  if (!solution) return;
+  if (!chat.problemID) {
+    console.error("Something went wrong");
+    return;
+  }
+  chat.input.value = "";
+  showChatPage("loadingDiv");
+  chat.status = "fetching";
+  chat.controller = new AbortController();
 
-	chat.window.style.display = 'block'
-	chat.window.querySelectorAll('.chat-screen').forEach((screen) => {
-		screen.style.display = 'none'
-	})
+  fetch(serverLink + "generateResponse", {
+    method: "POST",
+    body: JSON.stringify({
+      problem_id: chat.problemID,
+      student_solution: solution,
+      user_id: user_id,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      "Origin": window.location.origin, // Include Origin header
+    },
+    signal: chat.controller.signal,
+  })
+    .then((response) => {
+      console.log(response);
+      chat.status = "checked";
+      if (!response.ok) {
+        console.error(`HTTP error! status: ${response.status}`);
+        chat.status = "error";
+        if (response.status == 401) {
+          showError(
+            "Only registered, and verified users can send solutions. Login and verify your email to continue"
+          );
+        } else {
+          showError("Oops something went wrong :(");
+        }
+        return null;
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (!data || !data.response) return;
+      let html = ``;
 
-	// Adjust chat window width based on the active page
-	if (pageID === 'inputDiv') {
-		chat.window.classList.add('inputDiv-active') // Add class for inputDiv
-	} else {
-		chat.window.classList.remove('inputDiv-active') // Remove class for other divs
-	}
+      // Extract Overall_Grade first
+      const overallGradeKey = "Overall_Grade";
+      const overallGradeValue = data.response[overallGradeKey];
 
-	if (pageID === 'inputDiv') {
-		chat.thnkFeedback.style.display = 'none'
-		for (let id of ['thumb-up-btn', 'thumb-down-btn']) {
-			let el = document.getElementById(id)
-			el.classList.remove('pressed')
-			el.removeAttribute('disabled')
-		}
-	}
-	chat.window.querySelector(`#${pageID}`).style.display = 'block'
+      if (overallGradeValue !== undefined) {
+        const formattedKey = overallGradeKey
+          .replace(/_/g, " ") // Replace underscores with spaces
+          .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize each word
+
+        html += `
+          <div class="response-block overall-grade">
+            <h3 class="response-title">${formattedKey}:</h3>
+            <p class="response-value">${overallGradeValue}</p>
+          </div>
+        `;
+        delete data.response[overallGradeKey]; // Remove it to avoid duplication
+      }
+
+      // Process remaining keys
+      for (let [key, value] of Object.entries(data.response)) {
+        console.log(key, value);
+
+        // Format key: replace underscores with spaces and capitalize each word
+        const formattedKey = key
+          .replace(/_/g, " ")
+          .replace(/\b\w/g, (char) => char.toUpperCase());
+
+        // Check if value length exceeds 30 characters
+        const blockClass =
+          value.length > 30 ? "response-block long" : "response-block";
+
+        html += `
+          <div class="${blockClass}">
+            <h3 class="response-title">${formattedKey}:</h3>
+            <p class="response-field">${value}</p>
+          </div>
+        `;
+      }
+
+      chat.responseBody.innerHTML = html;
+      showChatPage("responseDIV");
+      chat.responseID = data.submission_id;
+
+      try {
+        MathJax.typeset([chat.responseDIV]);
+      } catch (e) {
+        console.error(e);
+      }
+    })
+    .catch((error) => {
+      if (chat.controller.signal.aborted) return;
+      chat.status = "error";
+      showError("Oops something went wrong :(");
+      console.error("Error fetching data:", error);
+    });
 }
 
 function showError(msg) {
@@ -217,18 +291,16 @@ function sendSolution(ev) {
 	chat.input.value = ''
 	showChatPage('loadingDiv')
 	chat.status = 'fetching'
-  fetch(serverLink + 'generateResponse', {
-    method: 'POST',
-    body: JSON.stringify({
-      problem_id: chat.problemID,
-      student_solution: solution,
-      user_id: user_id,
-    }),
-    headers: { 
-      'Content-Type': 'application/json',
-      'Origin': window.location.origin, // Include Origin header
-    },
-    signal: chat.controller.signal,
+	chat.controller = new AbortController()
+	fetch(serverLink + 'generateResponse', {
+		method: 'POST',
+		body: JSON.stringify({
+			problem_id: chat.problemID,
+			student_solution: solution,
+			user_id: user_id,
+		}),
+		headers: { 'Content-Type': 'application/json' },
+		signal: chat.controller.signal,
 	})
 		.then((response) => {
 			console.log(response)
