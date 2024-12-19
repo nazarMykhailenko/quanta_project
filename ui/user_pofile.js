@@ -88,18 +88,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 function showSubmission(event) {
 	event.preventDefault()
 	if (popup) {
-		popupDiv.innerHTML = ` <p>Downloading your details, please wait</p>`
+		popupDiv.innerHTML = `<p>Downloading your details, please wait</p>`
 	} else {
 		popup = document.createElement('div')
 		popup.classList.add('popup')
 		popup.innerHTML = `
-					<div class="popup-content">
-									<span class="close-btn" onclick="closePopup()">&times;</span>
-									<div id="popup-body">
-													<p>Downloading your details, please wait</p>
-									</div>
-							</div>
-					`
+			<div class="popup-content">
+				<span class="close-btn" onclick="closePopup()">&times;</span>
+				<div id="popup-body">
+					<p>Downloading your details, please wait</p>
+				</div>
+			</div>
+		`
 		document.body.append(popup)
 		popupDiv = popup.querySelector('#popup-body')
 	}
@@ -144,19 +144,43 @@ function renderDetails(data) {
 		console.error('something went wrong')
 		return
 	}
-	let html = `<div>
-					<h3 class="response-field">Your input:</h3>
-					<p class="response-field">${data.user_input}</p>
-			</div>`
-	for (let [key, value] of Object.entries(data.all_response)) {
-		html += `
-			<div>
-					<h3 class="response-field">${key}:</h3>
-					<p class="response-field">${value}</p>
+
+	// Ensure Overall Grade appears first
+	let overallGrade = ''
+	if (data.all_response && data.all_response.Overall_Grade) {
+		overallGrade = `
+			<div class="response-block overall-grade">
+				<h3 class="response-title">Overall Grade:</h3>
+				<p class="response-value">${data.all_response.Overall_Grade}</p>
 			</div>
-			`
+		`
+		delete data.all_response.Overall_Grade // Avoid duplication
 	}
+
+	// Generate remaining details
+	let detailsHTML = Object.entries(data.all_response)
+		.map(([key, value]) => {
+			return `
+			<div class="response-block">
+				<h3 class="response-title">${key.replace(/_/g, ' ')}:</h3>
+				<p class="response-value">${value}</p>
+			</div>
+		`
+		})
+		.join('')
+
+	// Combine input, overall grade, and other details
+	let html = `
+		<div>
+			<h3 class="response-field">Your input:</h3>
+			<p class="response-field">${data.user_input}</p>
+		</div>
+		${overallGrade}
+		${detailsHTML}
+	`
+
 	popupDiv.innerHTML = html
+
 	try {
 		MathJax.typeset([popupDiv])
 	} catch (e) {
