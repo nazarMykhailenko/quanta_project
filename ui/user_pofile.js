@@ -5,7 +5,7 @@ window.MathJax = {
 	},
 };
 
-let serverLink = 'https://api.quanta.world/';
+let serverLink = 'https://quanta-server.onrender.com/';
 let popup = null;
 let popupDiv = null;
 let submissions = {};

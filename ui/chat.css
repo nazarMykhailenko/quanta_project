@@ -136,9 +136,9 @@
 }
 
 .sbmt-button-container {
-	border: 2px solid #374b6a;
+	border: 3px solid #374b6a;
 	border-radius: 3px;
-	padding: 2px 8px;
+	padding: 2px 6px;
 	display: inline-flex;
 }
 .sbmt-button-container:hover {
@@ -147,7 +147,7 @@
 	filter: brightness(1.2); /* Enhance hover effect */
 }
 .sbmt-button {
-	width: 20px; /* Slightly larger for better clickability */
+	width: 15px; /* Slightly larger for better clickability */
 	transition: transform 0.3s ease, filter 0.3s ease;
 }
 
