@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 				if (!ids.includes(id)) continue // Skip IDs not in the `ids` array
 				let row_html = ``
 				for (let result of results) {
+					console.log(result)
 					row_html += `<a onclick="showSubmission(event)" data-id="${result.id}">${result.overall_grade}</a>`
 				}
 				let problemName = id.replace(/_/g, ' ')
