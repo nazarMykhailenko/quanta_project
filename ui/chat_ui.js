@@ -229,7 +229,6 @@ function sendSolution(ev) {
       'Content-Type': 'application/json',
       'Origin': window.location.origin, // Include Origin header
     },
-    signal: chat.controller.signal,
 	})
 		.then((response) => {
 			console.log(response)
