@@ -4,33 +4,6 @@ let chat = null
 let user_id = null
 let is_user_verified = null
 
-const proxyUrl = 'https://shrouded-crag-71800.herokuapp.com/';
-const apiUrl = 'https://quantaapi.vercel.app/generateResponse';
-
-fetch(proxyUrl + apiUrl, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    problem_id: chat.problemID,
-    student_solution: solution,
-    user_id: user_id,
-  }),
-})
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    console.log('Response from API:', data);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-
 //run this code once, copy problem ids from console, insert them to code, and comment following lines of code afterwards
 // function getIDS() {
 // 	document.addEventListener('DOMContentLoaded', () => {
