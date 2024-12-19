@@ -1,4 +1,4 @@
-const serverLink = 'https://quantaapi.vercel.app/'
+const serverLink = 'https://peaceful-refuge-01930.herokuapp.com/https://quantaapi.vercel.app/'
 // const serverLink = 'http://localhost:3000/'
 let chat = null
 let user_id = null
