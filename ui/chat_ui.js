@@ -1,4 +1,4 @@
-const serverLink = 'https://peaceful-refuge-01930.herokuapp.com/https://quantaapi.vercel.app/'
+const serverLink = 'https://hidden-reaches-65728-58ef374530af.herokuapp.com/https://quantaapi.vercel.app/';
 // const serverLink = 'http://localhost:3000/'
 let chat = null
 let user_id = null
@@ -27,24 +27,27 @@ let is_user_verified = null
 // getIDS()
 
 async function fetchProblems(serverLink, ids) {
-	try {
-		const response = await fetch(serverLink + 'getProblems', {
-			method: 'POST',
-			body: JSON.stringify({ ids: ids }),
-			headers: { 'Content-Type': 'application/json' },
-		})
+  try {
+    const response = await fetch(serverLink + 'getProblems', {
+      method: 'POST',
+      body: JSON.stringify({ ids: ids }),
+      headers: { 
+        'Content-Type': 'application/json',
+        'Origin': window.location.origin // Ensure the required Origin header is included
+      },
+    });
 
-		if (!response.ok) {
-			console.error(`HTTPS error! status: ${response.status}`)
-			return null
-		}
+    if (!response.ok) {
+      console.error(`HTTPS error! status: ${response.status}`);
+      return null;
+    }
 
-		const data = await response.json()
-		return data
-	} catch (error) {
-		console.error('Error fetching data:', error)
-		return null
-	}
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return null;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -214,16 +217,18 @@ function sendSolution(ev) {
 	chat.input.value = ''
 	showChatPage('loadingDiv')
 	chat.status = 'fetching'
-	chat.controller = new AbortController()
-	fetch(serverLink + 'generateResponse', {
-		method: 'POST',
-		body: JSON.stringify({
-			problem_id: chat.problemID,
-			student_solution: solution,
-			user_id: user_id,
-		}),
-		headers: { 'Content-Type': 'application/json' },
-		signal: chat.controller.signal,
+  fetch(serverLink + 'generateResponse', {
+    method: 'POST',
+    body: JSON.stringify({
+      problem_id: chat.problemID,
+      student_solution: solution,
+      user_id: user_id,
+    }),
+    headers: { 
+      'Content-Type': 'application/json',
+      'Origin': window.location.origin, // Include Origin header
+    },
+    signal: chat.controller.signal,
 	})
 		.then((response) => {
 			console.log(response)
