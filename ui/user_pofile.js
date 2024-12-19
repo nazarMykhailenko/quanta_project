@@ -86,12 +86,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 })
 
 function showSubmission(event) {
-	event.preventDefault();
+	event.preventDefault()
 	if (popup) {
-		popupDiv.innerHTML = `<p>Downloading your details, please wait</p>`;
+		popupDiv.innerHTML = `<p>Downloading your details, please wait</p>`
 	} else {
-		popup = document.createElement("div");
-		popup.classList.add("popup");
+		popup = document.createElement('div')
+		popup.classList.add('popup')
 		popup.innerHTML = `
 			<div class="popup-content">
 				<span class="close-btn" onclick="closePopup()">&times;</span>
@@ -99,62 +99,62 @@ function showSubmission(event) {
 					<p>Downloading your details, please wait</p>
 				</div>
 			</div>
-		`;
-		document.body.append(popup);
-		popupDiv = popup.querySelector("#popup-body");
+		`
+		document.body.append(popup)
+		popupDiv = popup.querySelector('#popup-body')
 	}
-	popup.style.display = "flex";
+	popup.style.display = 'flex'
 
-	const id = event.target.getAttribute("data-id");
+	const id = event.target.getAttribute('data-id')
 	if (submissions[id]) {
-		renderDetails(submissions[id]);
+		renderDetails(submissions[id])
 	} else {
-		fetch(serverLink + "getSubmission", {
-			method: "POST",
+		fetch(serverLink + 'getSubmission', {
+			method: 'POST',
 			body: JSON.stringify({
 				user_id: user_id,
 				submission_id: id,
 			}),
-			headers: { "Content-Type": "application/json" },
+			headers: { 'Content-Type': 'application/json' },
 		})
 			.then((response) => {
 				if (!response.ok) {
-					console.error(`HTTPS error! status: ${response.status}`);
-					return null;
+					console.error(`HTTPS error! status: ${response.status}`)
+					return null
 				}
-				return response.json();
+				return response.json()
 			})
 			.then((data) => {
-				if (!data) return;
-				submissions[id] = data;
-				renderDetails(data);
+				if (!data) return
+				submissions[id] = data
+				renderDetails(data)
 			})
 			.catch((error) => {
-				console.error(error);
-			});
+				console.error(error)
+			})
 	}
 }
 
 function closePopup(event) {
-	popup.style.display = "none";
+	popup.style.display = 'none'
 }
 
 function renderDetails(data) {
 	if (!popup) {
-		console.error("something went wrong");
-		return;
+		console.error('something went wrong')
+		return
 	}
 
 	// Ensure Overall Grade appears first
-	let overallGrade = "";
+	let overallGrade = ''
 	if (data.all_response && data.all_response.Overall_Grade) {
 		overallGrade = `
 			<div class="response-block overall-grade">
 				<h3 class="response-title">Overall Grade:</h3>
 				<p class="response-value">${data.all_response.Overall_Grade}</p>
 			</div>
-		`;
-		delete data.all_response.Overall_Grade; // Avoid duplication
+		`
+		delete data.all_response.Overall_Grade // Avoid duplication
 	}
 
 	// Generate remaining details
@@ -162,12 +162,12 @@ function renderDetails(data) {
 		.map(([key, value]) => {
 			return `
 			<div class="response-block">
-				<h3 class="response-title">${key.replace(/_/g, " ")}:</h3>
+				<h3 class="response-title">${key.replace(/_/g, ' ')}:</h3>
 				<p class="response-value">${value}</p>
 			</div>
-		`;
+		`
 		})
-		.join("");
+		.join('')
 
 	// Combine input, overall grade, and other details
 	let html = `
@@ -177,13 +177,13 @@ function renderDetails(data) {
 		</div>
 		${overallGrade}
 		${detailsHTML}
-	`;
+	`
 
-	popupDiv.innerHTML = html;
+	popupDiv.innerHTML = html
 
 	try {
-		MathJax.typeset([popupDiv]);
+		MathJax.typeset([popupDiv])
 	} catch (e) {
-		console.error(e);
+		console.error(e)
 	}
 }
