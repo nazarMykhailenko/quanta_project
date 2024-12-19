@@ -175,9 +175,9 @@ function renderDetails(data) {
 
 	// Combine input, overall grade, and other details
 	let html = `
-		<div>
-			<h3 class="response-field">Your input:</h3>
-			<p class="response-field">${data.user_input}</p>
+		<div class="response-block">
+			<h3 class="response-title">Your input:</h3>
+			<p class="response-value">${data.user_input}</p>
 		</div>
 		${overallGrade}
 		${detailsHTML}
