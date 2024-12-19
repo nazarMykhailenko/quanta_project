@@ -145,7 +145,7 @@ function renderDetails(data) {
 		return;
 	}
 
-	console.log(data)
+	console.log(data);
 
 	// Ensure Overall Grade appears first
 	let overallGrade = '';
@@ -173,13 +173,13 @@ function renderDetails(data) {
 		})
 		.join('');
 
-	// Combine input, overall grade, and other details
+	// Combine overall grade, input, and other details
 	let html = `
+		${overallGrade}
 		<div class="response-block">
 			<h3 class="response-title">Your input:</h3>
 			<p class="response-value">${data.user_input}</p>
 		</div>
-		${overallGrade}
 		${detailsHTML}
 	`;
 
