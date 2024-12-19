@@ -1,6 +1,4 @@
-// const serverLink = 'https://quantaapi.vercel.app/';
 const serverLink = 'https://quanta-server.onrender.com/'
-// https://hidden-reaches-65728-58ef374530af.herokuapp.com/
 let chat = null
 let user_id = null
 let is_user_verified = null
@@ -261,9 +259,11 @@ function sendSolution(ev) {
 					.replace(/\b\w/g, (char) => char.toUpperCase()) // Capitalize each word
 
 				html += `
-							<div class="response-block overall-grade">
-									<h3 class="response-title">${formattedKey}:</h3>
-									<p class="response-value">${overallGradeValue}</p>
+							<div class="overall-grade-block">
+								<div class="response-block overall-grade">
+										<h3 class="response-title">${formattedKey}:</h3>
+										<p class="response-value">${overallGradeValue}</p>
+								</div>
 							</div>
 					`
 				delete data.response[overallGradeKey] // Remove it to avoid duplication
