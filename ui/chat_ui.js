@@ -1,5 +1,5 @@
-const serverLink = 'https://hidden-reaches-65728-58ef374530af.herokuapp.com/http://localhost:3000/';
-// const serverLink = 'https://quantaapi.vercel.app/'
+const serverLink = 'https://hidden-reaches-65728-58ef374530af.herokuapp.com/https://quantaapi.vercel.app/';
+// const serverLink = ''https://quantaapi.vercel.app/
 let chat = null
 let user_id = null
 let is_user_verified = null
