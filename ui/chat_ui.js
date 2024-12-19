@@ -1,5 +1,5 @@
-const serverLink = 'https://quantaapi.vercel.app/'
-// const serverLink = 'http://localhost:3000/'
+// const serverLink = 'https://quantaapi.vercel.app/'
+const serverLink = 'http://localhost:3000/'
 let chat = null
 let user_id = null
 let is_user_verified = null
