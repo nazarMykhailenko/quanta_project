@@ -141,33 +141,37 @@ function closePopup(event) {
 
 function renderDetails(data) {
 	if (!popup) {
-		console.error('something went wrong')
-		return
+		console.error('something went wrong');
+		return;
 	}
 
+	console.log(data)
+
 	// Ensure Overall Grade appears first
-	let overallGrade = ''
+	let overallGrade = '';
 	if (data.all_response && data.all_response.Overall_Grade) {
 		overallGrade = `
 			<div class="response-block overall-grade">
 				<h3 class="response-title">Overall Grade:</h3>
 				<p class="response-value">${data.all_response.Overall_Grade}</p>
 			</div>
-		`
-		delete data.all_response.Overall_Grade // Avoid duplication
+		`;
+		delete data.all_response.Overall_Grade; // Avoid duplication
 	}
 
 	// Generate remaining details
 	let detailsHTML = Object.entries(data.all_response)
 		.map(([key, value]) => {
+			// Add the `long` class if value is longer than 30 characters
+			const blockClass = value.length > 30 ? 'response-block long' : 'response-block';
 			return `
-			<div class="response-block">
+			<div class="${blockClass}">
 				<h3 class="response-title">${key.replace(/_/g, ' ')}:</h3>
 				<p class="response-value">${value}</p>
 			</div>
-		`
+		`;
 		})
-		.join('')
+		.join('');
 
 	// Combine input, overall grade, and other details
 	let html = `
@@ -177,13 +181,13 @@ function renderDetails(data) {
 		</div>
 		${overallGrade}
 		${detailsHTML}
-	`
+	`;
 
-	popupDiv.innerHTML = html
+	popupDiv.innerHTML = html;
 
 	try {
-		MathJax.typeset([popupDiv])
+		MathJax.typeset([popupDiv]);
 	} catch (e) {
-		console.error(e)
+		console.error(e);
 	}
 }
