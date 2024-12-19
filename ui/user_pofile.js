@@ -179,11 +179,11 @@ function renderDetails(data) {
 	// Combine overall grade, input, and other details
 	let html = `
 		${overallGrade}
+		${detailsHTML}
 		<div class="response-block">
 			<h3 class="response-title">Your input:</h3>
 			<p class="response-value">${data.user_input}</p>
 		</div>
-		${detailsHTML}
 	`;
 
 	popupDiv.innerHTML = html;

@@ -125,7 +125,7 @@ function openChat(ev) {
         <div id="feedback-buttons">
             <button id="thumb-up-btn" onclick="sendFeedback(event, true)" class="btn">👍</button>
             <button id="thumb-down-btn" onclick="sendFeedback(event, false)" class="btn">👎</button>
-            <p id="thnk_feedback" style="display: none">Thank you for your feedback</p>
+            <p id="thnk_feedback" style="display: none">Thank you for your feedback!</p>
         </div>
     </div>
 

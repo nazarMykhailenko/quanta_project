@@ -93,6 +93,7 @@
 #feedback-buttons {
 	display: flex;
 	justify-content: flex-start;
+	align-items: center;
 	gap: 15px; /* Increase gap for better spacing */
 	margin-top: 15px;
 }
@@ -136,7 +137,7 @@
 }
 
 .sbmt-button-container {
-	border: 3px solid #374b6a;
+	border: 2px solid #374b6a;
 	border-radius: 6px;
 	padding: 2px 6px;
 	display: inline-flex;
