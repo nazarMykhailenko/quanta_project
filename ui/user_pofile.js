@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 	})
 		.then((response) => {
 			if (!response.ok) {
-				console.log(response)
 				console.error(`HTTPS error! status: ${response.status}`)
 				return null
 			}
