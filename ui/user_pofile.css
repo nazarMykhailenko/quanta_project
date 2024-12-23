@@ -143,3 +143,10 @@ body {
 	display: flex;
 	justify-content: start;
 }
+
+.input-response {
+	padding-top: 15px;
+	width: 100%;
+	border-top: 1px solid #ccc;
+	margin-top: 10px;
+}

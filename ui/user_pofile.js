@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	})
 		.then((response) => {
 			if (!response.ok) {
+				console.log(response)
 				console.error(`HTTPS error! status: ${response.status}`)
 				return null
 			}
@@ -64,7 +65,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 				if (!ids.includes(id)) continue // Skip IDs not in the `ids` array
 				let row_html = ``
 				for (let result of results) {
-					console.log(result)
 					row_html += `<a onclick="showSubmission(event)" data-id="${result.id}">${result.overall_grade}</a>`
 				}
 				let problemName = id.replace(/_/g, ' ')
@@ -146,8 +146,6 @@ function renderDetails(data) {
 		return;
 	}
 
-	console.log(data);
-
 	// Ensure Overall Grade appears first
 	let overallGrade = '';
 	if (data.all_response && data.all_response.Overall_Grade) {
@@ -180,7 +178,7 @@ function renderDetails(data) {
 	let html = `
 		${overallGrade}
 		${detailsHTML}
-		<div class="response-block">
+		<div class="response-block input-response">
 			<h3 class="response-title">Your input:</h3>
 			<p class="response-value">${data.user_input}</p>
 		</div>
